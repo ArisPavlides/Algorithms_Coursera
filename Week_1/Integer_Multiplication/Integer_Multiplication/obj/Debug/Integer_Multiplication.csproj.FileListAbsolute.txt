@@ -1,0 +1,7 @@
+C:\Users\arisp\Documents\Algorithms\Week_1\Integer_Multiplication\Integer_Multiplication\bin\Debug\Integer_Multiplication.exe.config
+C:\Users\arisp\Documents\Algorithms\Week_1\Integer_Multiplication\Integer_Multiplication\bin\Debug\Integer_Multiplication.exe
+C:\Users\arisp\Documents\Algorithms\Week_1\Integer_Multiplication\Integer_Multiplication\bin\Debug\Integer_Multiplication.pdb
+C:\Users\arisp\Documents\Algorithms\Week_1\Integer_Multiplication\Integer_Multiplication\obj\Debug\Integer_Multiplication.csprojAssemblyReference.cache
+C:\Users\arisp\Documents\Algorithms\Week_1\Integer_Multiplication\Integer_Multiplication\obj\Debug\Integer_Multiplication.csproj.CoreCompileInputs.cache
+C:\Users\arisp\Documents\Algorithms\Week_1\Integer_Multiplication\Integer_Multiplication\obj\Debug\Integer_Multiplication.exe
+C:\Users\arisp\Documents\Algorithms\Week_1\Integer_Multiplication\Integer_Multiplication\obj\Debug\Integer_Multiplication.pdb

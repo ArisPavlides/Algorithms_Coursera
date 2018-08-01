@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integer_Multiplication", "Integer_Multiplication\Integer_Multiplication.csproj", "{18865923-BA99-43C3-AFDC-9E51E9C4AD5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18865923-BA99-43C3-AFDC-9E51E9C4AD5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18865923-BA99-43C3-AFDC-9E51E9C4AD5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18865923-BA99-43C3-AFDC-9E51E9C4AD5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18865923-BA99-43C3-AFDC-9E51E9C4AD5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E1EEDAE-28CD-4246-9C65-55F4137FCF32}
+	EndGlobalSection
+EndGlobal
