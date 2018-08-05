@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2B7DF32A-2BC6-4104-9372-2C7E6955F92D}</ProjectGuid>
+    <ProjectGuid>{9BB03CA5-52C6-41D3-A515-F3FB3E6EC1F8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Merge_Sort</RootNamespace>
-    <AssemblyName>Merge_Sort</AssemblyName>
+    <RootNamespace>Count_inversions</RootNamespace>
+    <AssemblyName>Count_inversions</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

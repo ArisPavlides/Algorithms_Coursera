@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Merge_Sort")]
+[assembly: AssemblyTitle("Count_inversions")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Merge_Sort")]
+[assembly: AssemblyProduct("Count_inversions")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2b7df32a-2bc6-4104-9372-2c7e6955f92d")]
+[assembly: Guid("9bb03ca5-52c6-41d3-a515-f3fb3e6ec1f8")]
 
 // Version information for an assembly consists of the following four values:
 //
