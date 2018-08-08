@@ -10,6 +10,13 @@ namespace Binary_search
         {
             List<int> int_list = new List<int>() { 2, 4, 6, 8, 10, 9, 7, 5, 3, 1};
 
+            int max_num = int.MinValue;
+
+            for (int i = 0; i < int_list.Count; i++)
+            { if (max_num < int_list[i]) { max_num = int_list[i]; } };
+
+            int_list.Remove(max_num);
+
             Console.WriteLine(Binary_Search(int_list));
             Console.ReadLine();
         }
@@ -24,14 +31,8 @@ namespace Binary_search
             int num_elements = int_list.Count();
             int split = num_elements / 2;
 
-            List<int> left = new List<int>();
-            List<int> right = new List<int>();
-
-            for (int i = 0; i < num_elements; i++)
-            {
-                if (i < split) { left.Add(int_list[i]); }
-                else { right.Add(int_list[i]); }
-            }
+            List<int> left = int_list.GetRange(0, split);
+            List<int> right = int_list.Except(left).ToList();
 
             int high_num = 0;
 
