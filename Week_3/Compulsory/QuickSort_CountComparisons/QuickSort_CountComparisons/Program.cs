@@ -7,16 +7,14 @@ namespace QuickSort_CountComparisons
 {
     class Program
     {
-        public static int num_comps = 1;
+        public static int num_comps = 0;
 
         public static void Main()
         {
-            //List<string> num_list_str = File.ReadAllLines("C:/Users/arisp/Documents/Algorithms/Week_3/Compulsory/unsorted_numbers.txt").ToList();
-            //List<int> num_list = num_list_str.Select(int.Parse).ToList();
+            List<string> num_list_str = File.ReadAllLines("C:/Users/Aris/Desktop/unsorted_numbers.txt").ToList();
+            List<int> num_list = num_list_str.Select(int.Parse).ToList();
 
-            List<int> num_list = new List<int>() { 5, 1, 3, 0, 2, 4 }; // should be 9 comparisons
-
-            num_list = Quicksort(num_list, 0, num_list.Count - 1);
+            Quicksort(num_list, 0, num_list.Count - 1);
 
             Console.WriteLine(num_comps);
             Console.ReadLine();
@@ -28,7 +26,7 @@ namespace QuickSort_CountComparisons
             {
                 int split_idx = Partition(num_list, low, high);
 
-                Quicksort(num_list, low, split_idx);
+                Quicksort(num_list, low, split_idx - 1);
                 Quicksort(num_list, split_idx + 1, high);
             }
 
@@ -37,9 +35,18 @@ namespace QuickSort_CountComparisons
 
         static int Partition(List<int> num_list, int low, int high)
         {
-            num_comps += high - low - 1;
+            num_comps += high - low;
 
-            int pivot = num_list[low];
+            int med_idx = ((high - low + 1) % 2) == 0 ? ((high - low + 1) / 2) - 1 : ((high - low + 1) / 2);
+            int pivot_idx = GetMedian(low, med_idx, high, num_list);
+            int pivot = num_list[pivot_idx];
+
+            if (num_list[low] != pivot)
+            {
+                int swap = num_list[low];
+                num_list[low] = pivot;
+                num_list[pivot_idx] = swap;
+            }
 
             int i = low;
             int j = high;
@@ -62,6 +69,25 @@ namespace QuickSort_CountComparisons
             }
 
             return j;
+        }
+
+        static int GetMedian(int a, int b, int c, List<int> find_med)
+        {
+            int median;
+
+            if (find_med[b] < find_med[a] && find_med[a] < find_med[c]) { median = a; }
+
+            else if (find_med[c] < find_med[a] && find_med[a] < find_med[b]) { median = a; }
+
+            else if (find_med[a] < find_med[b] && find_med[b] < find_med[c]) { median = b; }
+
+            else if (find_med[c] < find_med[b] && find_med[b] < find_med[a]) { median = b; }
+
+            else if (find_med[a] < find_med[c] && find_med[c] < find_med[b]) { median = c; }
+
+            else { median = c; }
+
+            return median;
         }
     }
 }
