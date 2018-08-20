@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Deterministic_Selection
 {
@@ -12,33 +10,83 @@ namespace Deterministic_Selection
         {
             List<int> num_list = new List<int>() { 5, 3, 9, 1, 4, 8, 0, 7, 2, 6};
 
-            int i_order_stat = Deterministic_Selector(num_list);
+            int i_order_stat = Deterministic_Selector(num_list, 0, num_list.Count - 1);
 
             Console.WriteLine(i_order_stat);
             Console.ReadLine();
         }
 
-        static int Deterministic_Selector(List<int> num_list)
+        static int Deterministic_Selector(List<int> num_list, int start, int end)
+        {
+            if (end <= start)
+            {
+                return num_list[start];
+            }
+
+            int order_stat_req = 7;
+            int order_stat_found = 0;
+
+            int pivot_idx = Partitioning(num_list, start, end);
+
+            if (pivot_idx == order_stat_req - 1)
+            {
+                return num_list[pivot_idx];
+            }
+
+            else if (pivot_idx > order_stat_req - 1)
+            {
+                order_stat_found = Deterministic_Selector(num_list, start, pivot_idx - 1);
+            }
+
+            else
+            {
+                order_stat_found = Deterministic_Selector(num_list, pivot_idx + 1, end);
+            }
+
+            return order_stat_found;
+        }
+
+        static int Partitioning(List<int> num_list, int start, int end)
         {
             List<int> medians = new List<int>();
             List<int> select_five = new List<int>();
 
-            for (int i = 0; i < num_list.Count; i++)
-            {               
-                select_five.Add(num_list[i]);
+            for (int k = start; k <= end; k++)
+            {
+                select_five.Add(num_list[k]);
 
-                if ((i + 1) % 5 == 0)
+                if ((k + 1) % 5 == 0 || (k == end && k - start < 4))
                 {
-                    Split_Lists(select_five); // sort the subarray
+                    List<int> ordered = Split_Lists(select_five); // sort the subarray
 
-                    int median = (select_five.Count % 2 == 0) ? select_five[(select_five.Count / 2) - 1] : select_five[(select_five.Count / 2)];
-                    medians.Add(median); 
+                    int median = (ordered.Count % 2 == 0) ? ordered[(ordered.Count / 2) - 1] : ordered[ordered.Count / 2];
+                    medians.Add(median);
                     select_five.Clear();
                 }
-
             }
 
-            return 0;
+            List<int> ordered_med = Split_Lists(medians);
+            int pivot = (ordered_med.Count % 2 == 0) ? ordered_med[(ordered_med.Count / 2) - 1] : ordered_med[ordered_med.Count / 2];
+
+            int i = start;
+            int j = end;
+
+            while (true)
+            {
+                while (num_list[i] < pivot) { i++; }
+                while (num_list[j] > pivot) { j--; }
+
+                if (i >= j)
+                {
+                    break;
+                }
+
+                int swap = num_list[i];
+                num_list[i] = num_list[j];
+                num_list[j] = swap;
+            }
+
+            return j;
         }
 
         static List<int> Split_Lists(List<int> num_array)
