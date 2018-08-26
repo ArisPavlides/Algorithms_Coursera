@@ -1,0 +1,7 @@
+C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\bin\Debug\Minimum_cut.exe.config
+C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\bin\Debug\Minimum_cut.exe
+C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\bin\Debug\Minimum_cut.pdb
+C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.csprojAssemblyReference.cache
+C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.csproj.CoreCompileInputs.cache
+C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.exe
+C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.pdb

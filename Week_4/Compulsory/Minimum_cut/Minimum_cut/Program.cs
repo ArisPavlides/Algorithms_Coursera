@@ -11,14 +11,41 @@ namespace Minimum_cut
     {
         static void Main()
         {
-            string[] _adj = File.ReadAllLines("C:/Users/Aris/Documents/Algorithms_Coursera/Week_4/Compulsory/data.txt");
+            string path = "C:/Users/arisp/Documents/Algorithms_Coursera/Week_4/Compulsory/data.txt";
+            string[][] _adj = File.ReadLines(path).Select(line => line.Split('\t')).ToArray();
 
-            var lls = new List<List<string>>();
-            for (int i = 0; i < _adj.First().Split('\t').Length; i++)
+            var graph = new Graph();
+            graph.nodes = new List<Nodes>();
+
+            for (int i = 0; i < _adj.GetLength(0); i++)
             {
+                var node = new Nodes();
+                node.name = _adj[i][0];
 
-                lls.Add(_adj.Select(x => x.Split('\t')[i]).ToList());
+                graph.nodes.Add(node);
             }
+
+            int nodeINT = 0;
+
+            foreach (var node in graph.nodes)
+            {
+                node.Neighbours = new List<Nodes>();
+
+                for (int columns = 0; columns < _adj[nodeINT].GetLength(0) - 1; columns++)
+                {
+                    if (columns != 0) // if col
+                    {
+                        var neighbour = new Nodes();
+                        neighbour.name = _adj[nodeINT][columns];
+
+                        node.Neighbours.Add(neighbour);
+                    }
+                }
+
+                nodeINT++;
+            }
+
+            int num_cuts = Exec_MinCut.Count_Cuts(graph.nodes);
         }
     }
 }
