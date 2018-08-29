@@ -15,6 +15,7 @@ namespace Minimum_cut
     {
         public string name { get; set; }
         public List<Nodes> Neighbours { get; set; }
+        public string list_member { set; get; }
     }
 
     public class Neighbours

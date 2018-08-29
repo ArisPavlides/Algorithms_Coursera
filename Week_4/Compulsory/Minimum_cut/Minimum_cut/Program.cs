@@ -11,7 +11,7 @@ namespace Minimum_cut
     {
         static void Main()
         {
-            string path = "C:/Users/arisp/Documents/Algorithms_Coursera/Week_4/Compulsory/data.txt";
+            string path = @"C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\test_data.txt";
             string[][] _adj = File.ReadLines(path).Select(line => line.Split('\t')).ToArray();
 
             var graph = new Graph();
@@ -21,6 +21,7 @@ namespace Minimum_cut
             {
                 var node = new Nodes();
                 node.name = _adj[i][0];
+                node.list_member = _adj[i][0];
 
                 graph.nodes.Add(node);
             }
@@ -31,7 +32,7 @@ namespace Minimum_cut
             {
                 node.Neighbours = new List<Nodes>();
 
-                for (int columns = 0; columns < _adj[nodeINT].GetLength(0) - 1; columns++)
+                for (int columns = 0; columns < _adj[nodeINT].GetLength(0); columns++)
                 {
                     if (columns != 0) // if col
                     {
@@ -44,8 +45,22 @@ namespace Minimum_cut
 
                 nodeINT++;
             }
+            
+            int num_cuts;
 
-            int num_cuts = Exec_MinCut.Count_Cuts(graph.nodes);
+            // if a node has no neighbours, then the minimum cut is zero
+            for (int i = 0; i < graph.nodes.Count; i++)
+            {
+                if (graph.nodes[i].Neighbours.Count == 0)
+                {
+                    num_cuts = 0;
+                }
+            }
+
+            num_cuts = Exec_MinCut.Count_Cuts(graph.nodes);
+
+            Console.WriteLine(num_cuts);
+            Console.ReadLine();
         }
     }
 }
