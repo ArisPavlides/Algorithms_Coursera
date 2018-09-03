@@ -46,18 +46,16 @@ namespace Minimum_cut
                 nodeINT++;
             }
             
-            int num_cuts;
-
+            int num_cuts = 0;
+            bool connected_graph = true;
+            
             // if a node has no neighbours, then the minimum cut is zero
             for (int i = 0; i < graph.nodes.Count; i++)
             {
-                if (graph.nodes[i].Neighbours.Count == 0)
-                {
-                    num_cuts = 0;
-                }
+                if (graph.nodes[i].Neighbours.Count == 0){ connected_graph = false; }
             }
 
-            num_cuts = Exec_MinCut.Count_Cuts(graph.nodes);
+            if (connected_graph) { num_cuts = Exec_MinCut.Count_Cuts(graph.nodes); }
 
             Console.WriteLine(num_cuts);
             Console.ReadLine();

@@ -11,11 +11,17 @@ namespace Minimum_cut
         public static int Count_Cuts(List<Nodes> nodes)
         {
             int num_nodes = nodes.Count;
+            int num_arcs = 0;
+
+            foreach (Nodes node in nodes)
+            {
+                num_arcs += node.Neighbours.Count;
+            }
+
+            Random rnd = new Random(0); // seed the random number generator to get comparable results
 
             while (num_nodes > 2)
-            {
-                Random rnd = new Random();
-
+            {               
                 int node_a;  
                 int node_b;
 
@@ -28,16 +34,13 @@ namespace Minimum_cut
                     if (nodes[node_a].list_member != nodes[node_b].list_member) { break; }
                 }
 
-                List<Nodes> new_neighbours = nodes[node_a].Neighbours.Union(nodes[node_b].Neighbours).ToList();
-
                 string replace_list = nodes[node_b].list_member;
 
                 foreach (Nodes node in nodes)
-                {
-                    if (node.list_member == replace_list)
-                    {
-                        node.list_member = nodes[node_a].list_member;
-                    }
+                {                    
+                    if (node.list_member == replace_list) { node.list_member = nodes[node_a].list_member; }
+                    if (node.list_member == nodes[node_a].list_member) { num_arcs -= node.Neighbours.Count(p => (p.name == node_a.ToString()) || (p.name == node_b.ToString())); }
+
                 }
 
                 num_nodes--;
