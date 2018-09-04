@@ -11,24 +11,24 @@ namespace Minimum_cut
     {
         static void Main()
         {
-            string path = @"C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\test_data.txt";
+            string path = @"C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\data.txt";
             string[][] _adj = File.ReadLines(path).Select(line => line.Split('\t')).ToArray();
 
-            var graph = new Graph();
-            graph.nodes = new List<Nodes>();
+            Graph graph = new Graph();
+            graph.Nodes = new List<Nodes>();
 
             for (int i = 0; i < _adj.GetLength(0); i++)
             {
-                var node = new Nodes();
-                node.name = _adj[i][0];
-                node.list_member = _adj[i][0];
+                Nodes node = new Nodes();
+                node.Name = _adj[i][0];
+                node.List_member = _adj[i][0];
 
-                graph.nodes.Add(node);
+                graph.Nodes.Add(node);
             }
 
             int nodeINT = 0;
 
-            foreach (var node in graph.nodes)
+            foreach (Nodes node in graph.Nodes)
             {
                 node.Neighbours = new List<Nodes>();
 
@@ -37,7 +37,7 @@ namespace Minimum_cut
                     if (columns != 0) // if col
                     {
                         var neighbour = new Nodes();
-                        neighbour.name = _adj[nodeINT][columns];
+                        neighbour = graph.Nodes[Convert.ToInt32(_adj[nodeINT][columns])];
 
                         node.Neighbours.Add(neighbour);
                     }
@@ -50,12 +50,12 @@ namespace Minimum_cut
             bool connected_graph = true;
             
             // if a node has no neighbours, then the minimum cut is zero
-            for (int i = 0; i < graph.nodes.Count; i++)
+            for (int i = 0; i < graph.Nodes.Count; i++)
             {
-                if (graph.nodes[i].Neighbours.Count == 0){ connected_graph = false; }
+                if (graph.Nodes[i].Neighbours.Count == 0){ connected_graph = false; }
             }
 
-            if (connected_graph) { num_cuts = Exec_MinCut.Count_Cuts(graph.nodes); }
+            if (connected_graph) { num_cuts = Exec_MinCut.Count_Cuts(graph.Nodes); }
 
             Console.WriteLine(num_cuts);
             Console.ReadLine();
