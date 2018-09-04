@@ -22,13 +22,12 @@ namespace Minimum_cut
                 while (true)
                 {
                     node_a = rnd.Next(nodes.Count); // creates a number between 0 and nodes.Count
-                    int node_a_neighb = rnd.Next(nodes[node_a].Neighbours.Count); // creates a number between 0 and neighbours count
-                    node_b = Convert.ToInt32(nodes[node_a].Neighbours[node_a_neighb].Name);
+                    node_b = rnd.Next(nodes[node_a].Neighbours.Count); // creates a number between 0 and neighbours count
 
-                    if (nodes[node_a].List_member != nodes[node_b].List_member) { break; }
+                    if (nodes[node_a].List_member != nodes[node_a].Neighbours[node_b].List_member) { break; }
                 }
 
-                string replace_list = nodes[node_b].List_member;
+                string replace_list = nodes[node_a].Neighbours[node_b].List_member;
 
                 foreach (Nodes node in nodes)
                 {                    
