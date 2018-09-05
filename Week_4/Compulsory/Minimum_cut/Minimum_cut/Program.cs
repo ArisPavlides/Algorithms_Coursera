@@ -11,7 +11,7 @@ namespace Minimum_cut
     {
         static void Main()
         {
-            string path = @"C:\Users\arisp\Documents\Algorithms_Coursera\Week_4\Compulsory\test_data_init1.txt";
+            string path = @"C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\data.txt";
             string[][] _adj = File.ReadLines(path).Select(line => line.Split('\t')).ToArray();
 
             Graph graph = new Graph();
@@ -32,9 +32,9 @@ namespace Minimum_cut
             {
                 node.Neighbours = new List<Nodes>();
 
-                for (int columns = 0; columns < _adj[nodeINT].GetLength(0); columns++)
+                for (int columns = 0; columns < _adj[nodeINT].GetLength(0) - 1; columns++)
                 {
-                    if (columns != 0) // if col
+                    if (columns != 0) // if column is not the first one which contains the node name
                     {
                         Nodes neighbour = new Nodes();
                         neighbour = graph.Nodes.FirstOrDefault(p => p.Name == _adj[nodeINT][columns]);
