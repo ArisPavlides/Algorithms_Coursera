@@ -8,55 +8,62 @@ namespace Minimum_cut
 {
     class Exec_MinCut
     {
-        public static int Count_Cuts(List<Nodes> nodes)
+        public static int Count_Cuts(List<Adjacency_List> arcs, List<Nodes> nodes)
         {            
             int total_trials = Convert.ToInt32(Math.Pow(nodes.Count, 2) * Math.Log(nodes.Count));
             int min_cuts_found = 0;
 
             // initialise the optimisation variable by setting it equal to the total number of arcs in the graph
-            foreach (Nodes calc_arcs in nodes) { min_cuts_found += calc_arcs.Neighbours.Count; }
+            min_cuts_found = arcs.Count;
 
             Random rnd = new Random(); // seed the random number generator to get comparable results
             int trial_num = 0;
 
             // repeat until number of trials reached
             while (trial_num < total_trials)
-            {
-                int num_nodes = nodes.Count;
-
+            {                
                 foreach (Nodes node in nodes) { node.List_member = node.Name; } // reset the list_membership of the nodes
 
+                List<Adjacency_List> shuffled_arcs = arcs.OrderBy(a => Guid.NewGuid()).ToList();
+                int shuffled_idx = 0;
+
                 // repeat until the minimum cut is created
+                int num_nodes = nodes.Count;
+
                 while (num_nodes > 2)
-                {                                        
-                    int node_a;
-                    int node_b;
+                {
+                    string node_i_list = shuffled_arcs[shuffled_idx].node_i.List_member; // list membership of node_i
+                    string node_j_list = shuffled_arcs[shuffled_idx].node_j.List_member; // list membership of node_j
 
-                    while (true)
+                    if (node_i_list != node_j_list)
                     {
-                        node_a = rnd.Next(nodes.Count); // creates a number between 0 and nodes.Count
-                        node_b = rnd.Next(nodes[node_a].Neighbours.Count); // creates a number between 0 and neighbours count
+                        // fuse the nodes by assigning them to the same list
+                        foreach (Nodes node in nodes)
+                        {
+                            if (node.List_member == node_j_list) { node.List_member = node_i_list; }
+                        }
 
-                        if (nodes[node_a].List_member != nodes[node_a].Neighbours[node_b].List_member) { break; }
+                        num_nodes--;
                     }
 
-                    string replace_list = nodes[node_a].Neighbours[node_b].List_member;
-
-                    // fuse the nodes by assigning them to the same list
-                    foreach (Nodes node in nodes)
-                    {
-                        if (node.List_member == replace_list) { node.List_member = nodes[node_a].List_member; }
-                    }
-
-                    num_nodes--;
+                    shuffled_idx++;
                 }
 
                 int cut_arcs_num = 0;
                 string left_list_name = nodes[0].List_member;
 
-                foreach (Nodes node in nodes)
+                foreach (Adjacency_List arc in shuffled_arcs)
                 {
-                    if (node.List_member == left_list_name) { cut_arcs_num += node.Neighbours.Count(p => (p.List_member != left_list_name)); }
+                    // if node_i == left_list_name find the list membership of node_j
+                    string node_i_list = arc.node_i.List_member;
+
+                    if (node_i_list == left_list_name)
+                    {
+                        // if list of node_i != list membership of node_j then add 1
+                        string node_j_list = arc.node_j.List_member;
+
+                        if (node_i_list != node_j_list) { cut_arcs_num++; }
+                    }
                 }
 
                 if (min_cuts_found > cut_arcs_num) { min_cuts_found = cut_arcs_num; }

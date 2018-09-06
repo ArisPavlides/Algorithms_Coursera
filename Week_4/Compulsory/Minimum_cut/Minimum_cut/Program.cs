@@ -15,7 +15,7 @@ namespace Minimum_cut
             string[][] _adj = File.ReadLines(path).Select(line => line.Split('\t')).ToArray();
 
             Graph graph = new Graph();
-            graph.Nodes = new List<Nodes>();
+            List<Nodes> nodes = new List<Nodes>();
 
             for (int i = 0; i < _adj.GetLength(0); i++)
             {
@@ -23,39 +23,37 @@ namespace Minimum_cut
                 node.Name = _adj[i][0];
                 node.List_member = _adj[i][0];
 
-                graph.Nodes.Add(node);
+                nodes.Add(node);
             }
 
             int nodeINT = 0;
+            graph.Arcs = new List<Adjacency_List>();
 
-            foreach (Nodes node in graph.Nodes)
+            foreach (Nodes node in nodes)
             {
-                node.Neighbours = new List<Nodes>();
+                string node_i = node.Name;
 
                 for (int columns = 0; columns < _adj[nodeINT].GetLength(0) - 1; columns++)
                 {
                     if (columns != 0) // if column is not the first one which contains the node name
                     {
-                        Nodes neighbour = new Nodes();
-                        neighbour = graph.Nodes.FirstOrDefault(p => p.Name == _adj[nodeINT][columns]);
+                        Adjacency_List arc = new Adjacency_List();
 
-                    node.Neighbours.Add(neighbour);
+                        string  node_j = _adj[nodeINT][columns];
+
+                        arc.node_i = nodes.AsParallel().FirstOrDefault(item => item.Name == node_i); // AsParallel() splits up the search across multiple threads
+                        arc.node_j = nodes.AsParallel().FirstOrDefault(item => item.Name == node_j); // AsParallel() splits up the search across multiple threads
+
+                        graph.Arcs.Add(arc);
                     }
                 }
 
                 nodeINT++;
             }
             
-            int num_cuts = 0;
-            bool connected_graph = true;
-            
-            // if a node has no neighbours, then the minimum cut is zero
-            for (int i = 0; i < graph.Nodes.Count; i++)
-            {
-                if (graph.Nodes[i].Neighbours.Count == 0){ connected_graph = false; }
-            }
+            int num_cuts = 0;      
 
-            if (connected_graph) { num_cuts = Exec_MinCut.Count_Cuts(graph.Nodes); }
+            num_cuts = Exec_MinCut.Count_Cuts(graph.Arcs, nodes); 
 
             Console.WriteLine(num_cuts);
             Console.ReadLine();

@@ -11,4 +11,3 @@ C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimu
 C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.csproj.CoreCompileInputs.cache
 C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.exe
 C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.pdb
-C:\Users\Aris\Documents\Algorithms_Coursera\Week_4\Compulsory\Minimum_cut\Minimum_cut\obj\Debug\Minimum_cut.csprojAssemblyReference.cache

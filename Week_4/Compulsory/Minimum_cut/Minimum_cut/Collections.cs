@@ -8,18 +8,18 @@ namespace Minimum_cut
 {
     public class Graph
     {
-        public List<Nodes> Nodes { get; set; }
-    }
+        public List<Adjacency_List> Arcs { get; set; }
+    } 
 
     public class Nodes
     {
         public string Name { get; set; }
-        public List<Nodes> Neighbours { get; set; }
         public string List_member { set; get; }
     }
 
-    public class Neighbours
+    public class Adjacency_List
     {
-        public List<Nodes> NeighbouringNodes { get; set; }
+        public Nodes node_i { get; set; }
+        public Nodes node_j { get; set; }
     }
 }
